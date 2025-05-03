@@ -15,6 +15,24 @@ export const getContacts = async (req, res) => {
   }
 };
 
+// Count all contacts for admin user
+export const countAllContacts = async (req, res) => {
+  try {
+    const contactCount = await Contact.countDocuments({});
+
+    return res.status(200).json({
+      contact_count: contactCount,
+      message: "Contact count retrieved successfully",
+      success: true,
+    });
+  } catch (err) {
+    console.log(err);
+    return res
+      .status(500)
+      .json({ message: "Internal server error", success: false });
+  }
+};
+
 // Get a single contact by ID
 export const getContactById = async (req, res) => {
   try {

@@ -4,7 +4,7 @@ import {
   getContactById,
   createContact,
   updateContact,
-} from "../controllers/ContactController";
+} from "../controllers/ContactController.js";
 let router = express.Router();
 
 // Get all contacts
