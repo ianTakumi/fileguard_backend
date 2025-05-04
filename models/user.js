@@ -23,11 +23,12 @@ const userSchema = new Schema(
     profile: {
       url: {
         type: String,
-        default: "https://example.com/default-profile.png",
+        default:
+          "https://res.cloudinary.com/dmepkx0hr/image/upload/v1746351046/default_lhdlno.jpg",
       },
       public_id: {
         type: String,
-        default: "default-public-id",
+        default: "default_lhdlno",
       },
     },
     role: {

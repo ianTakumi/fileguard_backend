@@ -6,6 +6,9 @@ import {
   createContact,
   updateContact,
 } from "../controllers/ContactController.js";
+import authMiddleware from "../middlewares/authMiddleware.js";
+import adminAccessMiddleware from "../middlewares/adminAccessMiddleware.js";
+
 let router = express.Router();
 
 // Count all contacts for admin user
