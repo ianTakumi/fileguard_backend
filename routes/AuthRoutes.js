@@ -5,6 +5,8 @@ import {
   register,
   requestPasswordReset,
   resetPassword,
+  refreshToken,
+  logout,
 } from "../controllers/AuthController.js";
 let router = express.Router();
 
@@ -22,5 +24,11 @@ router.post("/reset-password", resetPassword);
 
 // Check unique email
 router.get("/check-unique-email/:email", checkUniqueEmail);
+
+// Refresh token
+router.post("/refresh", refreshToken);
+
+// Logout
+router.post("/logout", logout);
 
 export default router;

@@ -4,7 +4,7 @@ import User from "../models/user.js";
 export const getUsers = async (req, res) => {
   try {
     // Get all users from the database
-    const users = await User.find();
+    const users = await User.find({ role: { $ne: "admin" } });
 
     // Return the users in the response
     res
@@ -12,6 +12,22 @@ export const getUsers = async (req, res) => {
       .json({ message: "Users fetched successfully", data: users });
   } catch (error) {
     res.status(500).json({ message: error.message });
+  }
+};
+
+// Count all users for admin user
+export const countAllUsers = async (req, res) => {
+  try {
+    const userCount = await User.countDocuments({});
+
+    return res.status(200).json({
+      user_count: userCount,
+      message: "User count retrieved successfully",
+      success: true,
+    });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ message: "Internal server error" });
   }
 };
 

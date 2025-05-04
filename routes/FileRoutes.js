@@ -1,5 +1,6 @@
 import {
   getAllFilesBasedOnUser,
+  countAllFiles,
   getFileById,
   createFile,
   updateFile,
@@ -9,6 +10,9 @@ import {
 import express from "express";
 
 let router = express.Router();
+
+// Count all files for admin user
+router.get("/count", countAllFiles);
 
 // Get all files for a user
 router.get("/:userId", getAllFilesBasedOnUser);

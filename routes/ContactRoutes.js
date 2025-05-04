@@ -1,11 +1,15 @@
 import express from "express";
 import {
   getContacts,
+  countAllContacts,
   getContactById,
   createContact,
   updateContact,
 } from "../controllers/ContactController.js";
 let router = express.Router();
+
+// Count all contacts for admin user
+router.get("/count", countAllContacts);
 
 // Get all contacts
 router.get("/", getContacts);

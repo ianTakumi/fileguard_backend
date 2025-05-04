@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import mongoose from "mongoose";
 import morgan from "morgan";
+import cookieParser from "cookie-parser";
 
 import authRoutes from "./routes/AuthRoutes.js";
 import fileRoutes from "./routes/FileRoutes.js";
@@ -13,14 +14,20 @@ dotenv.config();
 
 const app = express();
 app.use(morgan("dev"));
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/v1/auth", authRoutes);
-app.use("/api/v1/file", fileRoutes);
-app.use("/api/v1/user", userRoutes);
-app.use("/api/v1/contact", contactRoutes);
+app.use("/api/v1/files", fileRoutes);
+app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/contacts", contactRoutes);
 
 mongoose
   .connect(process.env.MONGO_URI)
